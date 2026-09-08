@@ -1,0 +1,391 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Press+Start+2P&family=VT323&family=Rajdhani:wght@500;600;700;800&family=Permanent+Marker&family=Share+Tech+Mono&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-arcade: "Press Start 2P", monospace;
+  --font-crt: "VT323", monospace;
+  --font-chrome: "Audiowide", "Rajdhani", sans-serif;
+  --font-script: "Permanent Marker", cursive;
+  --font-tech: "Share Tech Mono", monospace;
+  --font-body: "Rajdhani", sans-serif;
+
+  --color-synth-void: #080114;
+  --color-synth-abyss: #13042c;
+  --color-synth-pink: #ff2a85;
+  --color-synth-magenta: #f706cf;
+  --color-synth-purple: #9b2bfb;
+  --color-synth-cyan: #00f0ff;
+  --color-synth-yellow: #ffe600;
+  --color-synth-orange: #ff7700;
+  --color-synth-laser: #05ffa1;
+}
+
+:root {
+  --neon-pink-glow: 0 0 10px #ff2a85, 0 0 25px rgba(255, 42, 133, 0.65), 0 0 50px rgba(255, 42, 133, 0.35);
+  --neon-cyan-glow: 0 0 10px #00f0ff, 0 0 25px rgba(0, 240, 255, 0.65), 0 0 50px rgba(0, 240, 255, 0.35);
+  --neon-yellow-glow: 0 0 10px #ffe600, 0 0 25px rgba(255, 230, 0, 0.65);
+  --neon-laser-glow: 0 0 10px #05ffa1, 0 0 25px rgba(5, 255, 161, 0.65);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #080114;
+}
+
+body {
+  background-color: #080114;
+  color: #f3e8ff;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: #ff2a85;
+  color: #ffffff;
+  text-shadow: 0 0 8px #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0221;
+  border-left: 1px solid rgba(255, 42, 133, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff2a85, #00f0ff);
+  border-radius: 4px;
+  box-shadow: 0 0 10px #ff2a85;
+}
+
+/* ========================================================= */
+/*  CHROME METALLIC TEXT                                      */
+/* ========================================================= */
+.chrome-text {
+  font-family: var(--font-chrome);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e2f3ff 25%,
+    #7bb6e8 48%,
+    #052554 50%,
+    #e65c00 52%,
+    #ffe600 75%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  position: relative;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 25px rgba(0, 240, 255, 0.45));
+}
+
+.chrome-text-pink {
+  font-family: var(--font-chrome);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ffc4e8 30%,
+    #c4208a 49%,
+    #3b0028 50%,
+    #ff2a85 52%,
+    #ffe600 80%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  filter: drop-shadow(0 0 25px rgba(255, 42, 133, 0.6));
+}
+
+.neon-pink-text {
+  color: #ff2a85;
+  text-shadow: 0 0 5px #fff, 0 0 10px #ff2a85, 0 0 20px #ff2a85, 0 0 40px #f706cf;
+}
+
+.neon-cyan-text {
+  color: #00f0ff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 40px #0084ff;
+}
+
+.neon-yellow-text {
+  color: #ffe600;
+  text-shadow: 0 0 5px #fff, 0 0 10px #ffe600, 0 0 20px #ff7700;
+}
+
+/* ========================================================= */
+/*  CRT SCANLINES, FLICKER & VIGNETTE                         */
+/* ========================================================= */
+.crt-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.35) 50%
+  ),
+  linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.04),
+    rgba(0, 255, 0, 0.02),
+    rgba(0, 0, 255, 0.04)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+.crt-vignette {
+  background: radial-gradient(
+    circle at center,
+    transparent 55%,
+    rgba(5, 0, 15, 0.5) 85%,
+    rgba(2, 0, 8, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.985; }
+  50% { opacity: 1; }
+  75% { opacity: 0.97; }
+  100% { opacity: 0.99; }
+}
+.crt-flicker {
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* ========================================================= */
+/*  RETRO SYNTHWAVE SUNSET & HORIZON GRID                     */
+/* ========================================================= */
+.sunset-gradient {
+  background: radial-gradient(
+    circle at 50% 100%,
+    #ffec3d 0%,
+    #ff7a45 35%,
+    #f759ab 65%,
+    #9254de 85%,
+    transparent 100%
+  );
+}
+
+/* Sun with horizontal blinder stripes */
+.synth-sun {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffe600 0%, #ff5e00 50%, #ff007f 100%);
+  box-shadow: 0 0 60px rgba(255, 94, 0, 0.8), 0 0 120px rgba(255, 0, 127, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.synth-sun::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 14px,
+    #080114 14px,
+    #080114 18px,
+    transparent 18px,
+    transparent 36px,
+    #080114 36px,
+    #080114 42px,
+    transparent 42px,
+    transparent 64px,
+    #080114 64px,
+    #080114 74px,
+    transparent 74px,
+    transparent 100px,
+    #080114 100px,
+    #080114 114px,
+    transparent 114px,
+    transparent 144px,
+    #080114 144px,
+    #080114 162px
+  );
+  bottom: 0;
+  height: 60%;
+  top: auto;
+}
+
+/* Shifting 3D Wireframe Perspective Grid Floor */
+.synth-grid-floor {
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  right: -50%;
+  height: 55%;
+  background-image:
+    linear-gradient(rgba(247, 6, 207, 0.6) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.5) 2px, transparent 2px);
+  background-size: 60px 60px;
+  transform: perspective(400px) rotateX(72deg);
+  transform-origin: 50% 100%;
+  animation: grid-scroll 3s linear infinite;
+  box-shadow: 0 0 80px rgba(255, 42, 133, 0.5);
+}
+
+@keyframes grid-scroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 60px;
+  }
+}
+
+/* Horizon neon beam line */
+.horizon-beam {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff2a85 20%, #ffe600 50%, #00f0ff 80%, transparent);
+  box-shadow: 0 0 20px #ffe600, 0 0 40px #ff2a85;
+}
+
+/* ========================================================= */
+/*  RETRO DATA CARTRIDGE STYLING & SLIDE IN                   */
+/* ========================================================= */
+.cartridge-shell {
+  background: linear-gradient(145deg, #1f1a30 0%, #100b1d 60%, #080511 100%);
+  border: 2px solid #372957;
+  border-top: 3px solid #ff2a85;
+  border-bottom: 5px solid #000000;
+  border-radius: 8px 8px 18px 18px;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.cartridge-shell:hover {
+  transform: translateY(-16px) scale(1.02);
+  border-color: #00f0ff;
+  border-top-color: #ffe600;
+  box-shadow: 0 25px 45px rgba(0, 240, 255, 0.35), 0 0 35px rgba(255, 42, 133, 0.45);
+}
+
+/* Grip notches on top of cartridge */
+.cartridge-grip {
+  background: repeating-linear-gradient(
+    90deg,
+    #0d0818 0px,
+    #0d0818 8px,
+    #2c1f44 8px,
+    #2c1f44 14px
+  );
+  height: 18px;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 2px solid #05020a;
+}
+
+/* Shiny holographic sticker label on cartridge */
+.cartridge-label {
+  background: linear-gradient(135deg, #ff2a85 0%, #9b2bfb 45%, #00f0ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cartridge-label::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: linear-gradient(
+    45deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 58%
+  );
+  animation: holo-shine 4s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes holo-shine {
+  0% { transform: translateY(-50%) rotate(25deg); }
+  100% { transform: translateY(50%) rotate(25deg); }
+}
+
+/* Golden edge connector strip at bottom */
+.cartridge-pins {
+  background: repeating-linear-gradient(
+    90deg,
+    #d4af37 0px,
+    #d4af37 7px,
+    #130a21 7px,
+    #130a21 11px
+  );
+  height: 14px;
+  border-top: 2px solid #000;
+  border-radius: 0 0 6px 6px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8), 0 2px 8px rgba(212, 175, 55, 0.4);
+}
+
+/* Cartridge Insertion Slot Animation */
+@keyframes cartridge-slot-in {
+  0% {
+    transform: translateY(-80px) scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(12px) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+.cartridge-insert {
+  animation: cartridge-slot-in 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ========================================================= */
+/*  80s ARCADE HELPER BOT / CRT HUD                           */
+/* ========================================================= */
+.arcade-hud-border {
+  border: 3px solid #ff2a85;
+  box-shadow: 0 0 15px rgba(255, 42, 133, 0.5), inset 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.pixel-art {
+  image-rendering: pixelated;
+}
+
+/* Arcade blinking coin prompt */
+@keyframes coin-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.blink-1s {
+  animation: coin-blink 1s infinite;
+}
+
+/* Tape cassette spin */
+@keyframes cassette-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.cassette-reel {
+  animation: cassette-spin 4s linear infinite;
+}
+.cassette-reel-paused {
+  animation-play-state: paused;
+}
+
+/* Laser blast pulse */
+@keyframes laser-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px #00f0ff, 0 0 30px #ff2a85;
+  }
+  50% {
+    box-shadow: 0 0 25px #ff2a85, 0 0 50px #00f0ff;
+  }
+}
+.pulse-laser {
+  animation: laser-glow 2s infinite ease-in-out;
+}
